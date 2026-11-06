@@ -84,7 +84,7 @@ Core/Src/
 - LCD 1행: `FLOOR:2F > 3F UP` 같은 상태, 2행: 엘리베이터 안 온습도(DHT11, 정지 중에만 측정)
 - PC → 보드: `CALL 1~3`, `STOP`, `HOME` / 보드 → PC: `$ST,<상태>,<현재층>,<목표층>,<방향>,<위치>,<문>,<센서>,<에러>`
 
-## ▶ 빌드
+## 빌드
 
 1. STM32CubeIDE에서 `File → Import → Existing Projects into Workspace`로 원하는 폴더 열기
 2. `.ioc` 파일을 열고 **Generate Code** (`Drivers/`(HAL, CMSIS)와 CubeMX가 자동 생성하는 시스템 파일은 저장소에서 제외)

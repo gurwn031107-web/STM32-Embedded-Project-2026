@@ -42,7 +42,7 @@ Core/Src/
     └── led/
 ```
 
-## ▶ 빌드
+## 빌드
 
 1. STM32CubeIDE에서 `File → Import → Existing Projects into Workspace`
 2. `.ioc` 파일을 열고 **Generate Code** (`Drivers/`는 저장소에서 제외)

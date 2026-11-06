@@ -78,7 +78,7 @@ Core/Src/
 docs/통합_코드_가이드.md   # 상세 설계 문서
 ```
 
-## ▶ 빌드
+## 빌드
 
 1. STM32CubeIDE에서 `File → Import → Existing Projects into Workspace`로 폴더 열기
 2. `.ioc` 파일을 열고 **Generate Code** (저장소에는 용량 때문에 `Drivers/`(HAL·CMSIS)를 넣지 않았습니다)
