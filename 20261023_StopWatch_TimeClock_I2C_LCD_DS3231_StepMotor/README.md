@@ -1,4 +1,4 @@
-# 🕰️ STM32 통합 시계 — FND · I2C LCD · DS3231 RTC · 스텝모터 바늘
+# STM32 통합 시계 - FND, I2C LCD, DS3231 RTC, 스텝모터 바늘
 
 > STM32F411RE로 만든 **시계 + 스톱워치**. RTC 시간을 FND·LCD에 표시하고, 스텝모터 3개로 **실제 시·분·초 바늘**을 움직입니다.
 
@@ -10,9 +10,7 @@
 | 개발 환경 | STM32CubeIDE, STM32CubeMX, C (HAL) |
 | 주변장치 | 4-digit FND, I2C LCD 16×2 (0x27), DS3231 RTC (0x68), 28BYJ-48 + ULN2003 ×3, 버튼 ×3, LED ×4 |
 
-<br>
-
-## 📌 동작
+## 동작
 
 | 모드 | 스텝모터 바늘 | FND | LCD 1행 | LCD 2행 |
 |---|---|---|---|---|
@@ -24,9 +22,7 @@
 - 스톱워치는 RUN 상태면 시계 모드에서도 계속 증가 (모드 전환 = 표시 대상 선택)
 - STOP 후 CLEAR → 숫자는 즉시 0, 바늘은 12시로 복귀
 
-<br>
-
-## 🧱 설계 포인트
+## 설계 포인트
 
 **타이머 인터럽트 분리**
 - `TIM3` 1ms: FND 스캔 + 스텝모터 (2ms마다 모터당 최대 1스텝)
@@ -48,9 +44,7 @@ distance = (target + N - position) % N
 - `driver/` : button, led, fnd, lcd, DS3231, StepMotor (하드웨어 제어)
 - main ↔ ISR 공유 변수는 `volatile` + 짧은 임계구역으로 스냅샷 복사
 
-<br>
-
-## 🔌 핀 배치
+## 핀 배치
 
 | 바늘 | IN1 | IN2 | IN3 | IN4 |
 |---|---|---|---|---|
@@ -67,9 +61,7 @@ distance = (target + N - position) % N
 
 > 원점 센서가 없으므로 전원 투입 전 세 바늘을 12시 방향에 맞춰야 합니다.
 
-<br>
-
-## 📁 폴더 구조
+## 폴더 구조
 
 ```
 Core/Src/
@@ -86,9 +78,7 @@ Core/Src/
 docs/통합_코드_가이드.md   # 상세 설계 문서
 ```
 
-<br>
-
-## ▶️ 빌드
+## ▶ 빌드
 
 1. STM32CubeIDE에서 `File → Import → Existing Projects into Workspace`로 폴더 열기
 2. `.ioc` 파일을 열고 **Generate Code** (저장소에는 용량 때문에 `Drivers/`(HAL·CMSIS)를 넣지 않았습니다)

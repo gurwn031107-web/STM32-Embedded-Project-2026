@@ -11,7 +11,7 @@
 - Python이 없으면 python.org에서 3.10 이상 설치 (첫 화면 "Add python.exe to PATH" 체크)
 - 포트: Nucleo(STLink Virtual COM Port) 선택 → 115200 → 연결. 보드 없이 테스트는 `DEMO (가상 보드)`
 - "액세스가 거부되었습니다" → 같은 COM 포트를 연 다른 프로그램(Tera Term, CubeIDE 터미널, 다른 GUI 창)을 닫기
-- 단축키: `1` `2` `3` 층 호출 · `Space` 비상 정지 · `H` 원점 복귀
+- 단축키: `1` `2` `3` 층 호출, `Space` 비상 정지, `H` 원점 복귀
 
 ## UART 프로토콜 (115200 8N1, 한 줄 = 명령 1개, `\n` 종료 / `\r` 무시)
 
@@ -34,7 +34,7 @@ $ST,<state>,<cur>,<target>,<dir>,<pos>,<door>,<s1s2s3>,<err>
 | cur, target | 0~3 (0 = 모름) |
 | dir | U / D / S (moveCmd) |
 | pos | position (1F = 0) |
-| door | 0 닫힘 · 1 도착 알림(DING/DONG/WAIT) · 2 열림 |
+| door | 0 닫힘, 1 도착 알림(DING/DONG/WAIT), 2 열림 |
 | s1s2s3 | 층 센서 1F·2F·3F, 1 = 가려짐 |
 | err | NONE / TIMEOUT / SENSOR / STOP / NOHOME (errName과 동일) |
 
