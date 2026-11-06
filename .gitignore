@@ -1,0 +1,12 @@
+# STM32CubeIDE build output
+Debug/
+Release/
+*.launch
+
+# CubeMX가 .ioc로 다시 생성하는 HAL/CMSIS
+Drivers/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
