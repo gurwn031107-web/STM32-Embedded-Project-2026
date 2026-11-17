@@ -10,3 +10,6 @@ Drivers/
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# CubeMX가 다시 생성하는 FreeRTOS 소스
+Middlewares/

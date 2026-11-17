@@ -1,10 +1,10 @@
 # STM32 Embedded Project 2026
 
 마이크로컨트롤러 프로그래밍 수업에서 NUCLEO-F411RE(STM32F411RE)로 실습한 코드를 날짜순으로 정리한 저장소입니다.
-LED 깜빡이기와 레지스터 직접 제어부터 타이머 인터럽트, I2C(LCD, RTC), 스텝모터, 센서(DHT11, HC-SR04, ADC), PWM 부저, UART 통신과 PC 프로그램까지 순서대로 진행했습니다.
+LED 깜빡이기와 레지스터 직접 제어부터 타이머 인터럽트, I2C(LCD, RTC), 스텝모터, 센서(DHT11, HC-SR04, ADC), PWM 부저, UART 통신과 PC 프로그램, FreeRTOS와 DC 모터 제어까지 순서대로 진행했습니다.
 
 > 대표 프로젝트: [STM32 통합 시계 (RTC, LCD, 스텝모터 바늘)](https://github.com/gurwn031107-web/stm32-integrated-clock-lcd-rtc-stepmotor)  
-> 미니 프로젝트: [3층 엘리베이터](20261105_Elevator)
+> 미니 프로젝트: [3층 엘리베이터](20261105_Elevator), [4WD 자율주행 RC카](20261113_RC_Car)
 
 ## 구성
 
@@ -56,6 +56,16 @@ LED 깜빡이기와 레지스터 직접 제어부터 타이머 인터럽트, I2C
 | [`20261104_uart_protocol`](20261104_uart_protocol) | 바이너리 패킷 프로토콜(LED 4개 제어, 온습도, 거리 요청/응답) + [`pc_gui`](20261104_uart_protocol/pc_gui) (PySide6 PC 제어 프로그램, 포트 자동 감지, 실시간 그래프) |
 | [`20261105_Elevator`](20261105_Elevator) | **미니 프로젝트**: 스텝모터와 포토 인터럽터로 만든 3층 엘리베이터. 원점 잡기, 층 센서 정지, 에러 감지 상태 머신, 도착 딩동과 문 열림, UART 명령 + [`pc_gui`](20261105_Elevator/pc_gui), [발표 자료](20261105_Elevator/docs/STM32_Elevator_발표자료.pptx) |
 
+### 6. FreeRTOS, DC 모터
+
+| 폴더 | 내용 |
+|---|---|
+| [`20261110_RTOS_Test`](20261110_RTOS_Test) | FreeRTOS 첫 실습: 버튼 이벤트, 카운터, FND 표시를 태스크로 나눠 RUN / STOP / CLEAR 카운터 구현 |
+| [`20261111_DC_Motor_controller`](20261111_DC_Motor_controller) | DC 모터 드라이버(TIM3 PWM 2채널 + 방향 핀 2개씩), 버튼 3개로 정지 / 전진 / 후진 / 좌회전 / 우회전 상태 머신 |
+| [`20261111_RTOS_DC_Motor`](20261111_RTOS_DC_Motor) | 모터 제어를 FreeRTOS로 옮김: ButtonTask가 Queue로 버튼 이벤트를 보내고 MotorTask가 상태 머신 실행 |
+| [`20261112_RTOS_DC_Motor_UART_Mutex`](20261112_RTOS_DC_Motor_UART_Mutex) | CommTask 추가(UART `RUN*`, `STOP*`, `SPD<속도>*` 명령), 여러 태스크가 I2C LCD를 같이 쓰도록 lcdMutex 적용 |
+| [`20261113_RC_Car`](20261113_RC_Car) | **미니 프로젝트**: 초음파 센서 3개로 장애물을 피하고 벽 사이 가운데를 달리는 4WD 자율주행 RC카. 태스크 4개, Queue, Mutex, 자동 / 수동 모드 |
+
 ## 공통 구조
 
 10/16 이후 프로젝트는 **애플리케이션(ap)과 드라이버(driver)를 나누는 계층 구조**로 작성했습니다.
@@ -86,6 +96,13 @@ Core/Src/
 | `ERROR` | 타임아웃, 너무 빠른 도착(센서 이상), 비상 정지 시 바로 정지. 버튼을 누르면 원점부터 다시 시작 |
 
 자세한 핀 배치, 구현 내용, 발표 자료는 [`20261105_Elevator`](20261105_Elevator) 폴더에 정리했습니다.
+
+## 미니 프로젝트: 4WD 자율주행 RC카
+
+FreeRTOS로 센서, 모터, 버튼, 통신을 태스크 4개로 나누고, 초음파 센서 3개로 앞이 막히면 넓은 쪽으로 돌아 피하고 벽 사이에서는 좌우 거리 차이로 P 제어를 해서 가운데를 따라 달리는 RC카입니다.
+1번 버튼이나 PC 명령으로 자동 / 수동 모드를 바꾸고, 자동 주행 중 아무 버튼이나 누르면 바로 멈춥니다.
+
+자세한 핀 배치, 태스크 구조, 알고리즘, 트러블슈팅은 [`20261113_RC_Car`](20261113_RC_Car) 폴더에 정리했습니다.
 
 ## 빌드
 
