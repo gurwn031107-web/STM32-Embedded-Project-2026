@@ -3,8 +3,7 @@
 마이크로컨트롤러 프로그래밍 수업에서 NUCLEO-F411RE(STM32F411RE)로 실습한 코드를 날짜순으로 정리한 저장소입니다.
 LED 깜빡이기와 레지스터 직접 제어부터 타이머 인터럽트, I2C(LCD, RTC), 스텝모터, 센서(DHT11, HC-SR04, ADC), PWM 부저, UART 통신과 PC 프로그램, FreeRTOS와 DC 모터 제어까지 순서대로 진행했습니다.
 
-> 대표 프로젝트: [STM32 통합 시계 (RTC, LCD, 스텝모터 바늘)](https://github.com/gurwn031107-web/stm32-integrated-clock-lcd-rtc-stepmotor)  
-> 미니 프로젝트: [3층 엘리베이터](20261105_Elevator), [4WD 자율주행 RC카](20261113_RC_Car)
+> 따로 정리한 프로젝트 저장소: [4WD 자율주행 RC카](https://github.com/gurwn031107-web/stm32-freertos-autonomous-rc-car), [3층 엘리베이터](https://github.com/gurwn031107-web/stm32-3floor-elevator), [STM32 통합 시계](https://github.com/gurwn031107-web/stm32-integrated-clock-lcd-rtc-stepmotor), [UART 패킷 프로토콜 + PC 프로그램](https://github.com/gurwn031107-web/stm32-uart-protocol-pc-gui)
 
 ## 구성
 
@@ -95,14 +94,14 @@ Core/Src/
 | `DOOR` | 딩동(TIM1 PWM) 후 2초 뒤 문 열림(LED), 3초 뒤 닫힘. 그동안 들어온 호출은 기억 |
 | `ERROR` | 타임아웃, 너무 빠른 도착(센서 이상), 비상 정지 시 바로 정지. 버튼을 누르면 원점부터 다시 시작 |
 
-자세한 핀 배치, 구현 내용, 발표 자료는 [`20261105_Elevator`](20261105_Elevator) 폴더에 정리했습니다.
+자세한 핀 배치, 구현 내용, 발표 자료는 [`20261105_Elevator`](20261105_Elevator) 폴더와 프로젝트 저장소 [stm32-3floor-elevator](https://github.com/gurwn031107-web/stm32-3floor-elevator)에 정리했습니다.
 
 ## 미니 프로젝트: 4WD 자율주행 RC카
 
 FreeRTOS로 센서, 모터, 버튼, 통신을 태스크 4개로 나누고, 초음파 센서 3개로 앞이 막히면 넓은 쪽으로 돌아 피하고 벽 사이에서는 좌우 거리 차이로 P 제어를 해서 가운데를 따라 달리는 RC카입니다.
 1번 버튼이나 PC 명령으로 자동 / 수동 모드를 바꾸고, 자동 주행 중 아무 버튼이나 누르면 바로 멈춥니다.
 
-자세한 핀 배치, 태스크 구조, 알고리즘, 트러블슈팅은 [`20261113_RC_Car`](20261113_RC_Car) 폴더에 정리했습니다.
+자세한 핀 배치, 태스크 구조, 알고리즘, 트러블슈팅은 [`20261113_RC_Car`](20261113_RC_Car) 폴더와 프로젝트 저장소 [stm32-freertos-autonomous-rc-car](https://github.com/gurwn031107-web/stm32-freertos-autonomous-rc-car)에 정리했습니다.
 
 ## 빌드
 
