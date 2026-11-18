@@ -63,7 +63,7 @@ LED 깜빡이기와 레지스터 직접 제어부터 타이머 인터럽트, I2C
 | [`20261111_DC_Motor_controller`](20261111_DC_Motor_controller) | DC 모터 드라이버(TIM3 PWM 2채널 + 방향 핀 2개씩), 버튼 3개로 정지 / 전진 / 후진 / 좌회전 / 우회전 상태 머신 |
 | [`20261111_RTOS_DC_Motor`](20261111_RTOS_DC_Motor) | 모터 제어를 FreeRTOS로 옮김: ButtonTask가 Queue로 버튼 이벤트를 보내고 MotorTask가 상태 머신 실행 |
 | [`20261112_RTOS_DC_Motor_UART_Mutex`](20261112_RTOS_DC_Motor_UART_Mutex) | CommTask 추가(UART `RUN*`, `STOP*`, `SPD<속도>*` 명령), 여러 태스크가 I2C LCD를 같이 쓰도록 lcdMutex 적용 |
-| [`20261113_RC_Car`](20261113_RC_Car) | **미니 프로젝트**: 초음파 센서 3개로 장애물을 피하고 벽 사이 가운데를 달리는 4WD 자율주행 RC카. 태스크 4개, Queue, Mutex, 자동 / 수동 모드 |
+| [`20261113_RC_Car`](20261113_RC_Car) | **미니 프로젝트**: 초음파 센서 3개로 장애물을 피하고 벽 사이 가운데를 달리는 4WD 자율주행 RC카. 태스크 4개, Queue, Mutex, 자동 / 수동 모드, [발표 자료](20261113_RC_Car/docs/STM32_RC_Car_발표자료.pptx) |
 
 ## 공통 구조
 

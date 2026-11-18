@@ -7,6 +7,7 @@ NUCLEO-F411RE와 FreeRTOS로 만든 4WD RC카입니다.
 - 기간: 2026.11.12 ~ 2026.11.15
 - 보드: NUCLEO-F411RE (STM32F411RE, 100MHz)
 - RTOS: FreeRTOS (CMSIS-RTOS v1)
+- 발표 자료: [STM32_RC_Car_발표자료.pptx](docs/STM32_RC_Car_발표자료.pptx)
 
 ## 기능
 
